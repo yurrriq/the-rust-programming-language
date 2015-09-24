@@ -1,7 +1,8 @@
 extern crate rand; // use rand from dependecies in Cargo.toml
 
 use std::io;
-use rand::Rng; // Rng for "range"
+use std::cmp::Ordering; // An enum type, similar to Haskell's
+use rand::Rng;          // Rng for "range"
 
 fn main() {
     println!("Guess the number!");
@@ -26,4 +27,10 @@ fn main() {
 
     println!("You guessed: {}", guess);   // `{}` => placeholder
     // e.g. `println!("x and y: {} and {}", x, y);`
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less    => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal   => println!("You win!"),
+    }
 }
