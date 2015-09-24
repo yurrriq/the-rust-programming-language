@@ -13,29 +13,34 @@ fn main() {
 
     println!("The secret number is: {}", secret_number);
 
-    println!("Please input your guess.");
+    loop {
+        println!("Please input your guess.");
 
-    let mut guess = String::new();        // Strings are mutable and UTF-8
-                                          // `::f()` =>  type-level function
-    io::stdin().read_line(&mut guess)     // `io::stdin()` needs `use std::io;`
-        .ok()                             // `&` => reference
-        .expect("Failed to read line");   // references are immutable by default
+        let mut guess = String::new();        // Strings are mutable and UTF-8
+        // `::f()` =>  type-level function
+        io::stdin().read_line(&mut guess)     // `io::stdin()` needs `use std::io;`
+            .ok()                             // `&` => reference
+            .expect("Failed to read line");   // references are immutable by default
 
-    // `io::stdin()` returns an `io::Result`
-    // `ok()` returns an option, i.e. `Some` or `None`
-    // `expect()` unwraps an option, calling `panic!` on a `Some`
+        // `io::stdin()` returns an `io::Result`
+        // `ok()` returns an option, i.e. `Some` or `None`
+        // `expect()` unwraps an option, calling `panic!` on a `Some`
 
-    // Shadow `guess` to convert it from a `String` to a `u32`
-    let guess: u32 = guess.trim().parse() // trim, parse and cast to 32-bit int
-        .ok()
-        .expect("Please type a number!");
+        // Shadow `guess` to convert it from a `String` to a `u32`
+        let guess: u32 = guess.trim().parse() // trim, parse and cast to 32-bit int
+            .ok()
+            .expect("Please type a number!");
 
-    println!("You guessed: {}", guess);    // `{}` => placeholder
-    // e.g. `println!("x and y: {} and {}", x, y);`
+        println!("You guessed: {}", guess);    // `{}` => placeholder
+        // e.g. `println!("x and y: {} and {}", x, y);`
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less    => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal   => println!("You win!"),
+        match guess.cmp(&secret_number) {
+            Ordering::Less    => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal   => {
+                println!("You win!");
+                break;                // Exit the loop
+            }
+        }
     }
 }
