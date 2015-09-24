@@ -1,0 +1,12 @@
+* The Rust Programming Language
+
+[[https://www.rust-lang.org][Rust]] is well beyond 1.0 now and has been on my radar for quite a while,
+so I figured it's worth checking out.
+
+Lucky for me, [[https://www.rust-lang.org/team.html][the Rust team]] has prepared [[https://doc.rust-lang.org/stable/book/][a book]].
+
+This repo is mostly for my own posterity, but if someone else finds it useful,
+great!
+
+All credit goes to [[https://www.rust-lang.org/team.html][the Rust team]]. I'm simply working through the examples
+they've made [[https://doc.rust-lang.org/stable/book/][available online]]. Thanks!
