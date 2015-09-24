@@ -27,9 +27,15 @@ fn main() {
         // `expect()` unwraps an option, calling `panic!` on a `Some`
 
         // Shadow `guess` to convert it from a `String` to a `u32`
-        let guess: u32 = guess.trim().parse() // trim, parse and cast to 32-bit int
-            .ok()
-            .expect("Please type a number!");
+        // trim, parse and cast to 32-bit int
+        //
+        // If the cast succeeds, bind `guess` to `num`,
+        // otherwise if it results in an error,
+        // ignore the error and restart the loop.
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_)  => continue, // Restart the loop
+        };
 
         println!("You guessed: {}", guess);    // `{}` => placeholder
         // e.g. `println!("x and y: {} and {}", x, y);`
