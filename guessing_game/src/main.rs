@@ -7,18 +7,18 @@ use rand::Rng;          // Rng for "range"
 fn main() {
     println!("Guess the number!");
 
-    let secret_number = rand::thread_rng().gen_range(1, 101);
     // `thread_rng()` => thread-local
     // gen_range(lower_inclusive, upper_exclusive)
+    let secret_number = rand::thread_rng().gen_range(1, 101);
 
     loop {
         println!("Please input your guess.");
 
-        let mut guess = String::new();        // Strings are mutable and UTF-8
-        // `::f()` =>  type-level function
-        io::stdin().read_line(&mut guess)     // `io::stdin()` needs `use std::io;`
-            .ok()                             // `&` => reference
-            .expect("Failed to read line");   // references are immutable by default
+        let mut guess = String::new();       // Strings are mutable and UTF-8
+                                             // `::f()` =>  type-level function
+        io::stdin().read_line(&mut guess)    // `io::stdin()` needs `use std::io;`
+            .ok()                            // `&` => reference
+            .expect("Failed to read line");  // references are immutable by default
 
         // `io::stdin()` returns an `io::Result`
         // `ok()` returns an option, i.e. `Some` or `None`
@@ -35,7 +35,7 @@ fn main() {
             Err(_)  => continue, // Restart the loop
         };
 
-        println!("You guessed: {}", guess);    // `{}` => placeholder
+        println!("You guessed: {}", guess); // `{}` => placeholder
         // e.g. `println!("x and y: {} and {}", x, y);`
 
         match guess.cmp(&secret_number) {
