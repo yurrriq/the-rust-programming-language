@@ -25,7 +25,12 @@ fn main() {
     // `ok()` returns an option, i.e. `Some` or `None`
     // `expect()` unwraps an option, calling `panic!` on a `Some`
 
-    println!("You guessed: {}", guess);   // `{}` => placeholder
+    // Shadow `guess` to convert it from a `String` to a `u32`
+    let guess: u32 = guess.trim().parse() // trim, parse and cast to 32-bit int
+        .ok()
+        .expect("Please type a number!");
+
+    println!("You guessed: {}", guess);    // `{}` => placeholder
     // e.g. `println!("x and y: {} and {}", x, y);`
 
     match guess.cmp(&secret_number) {
