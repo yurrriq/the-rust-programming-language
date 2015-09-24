@@ -11,8 +11,6 @@ fn main() {
     // `thread_rng()` => thread-local
     // gen_range(lower_inclusive, upper_exclusive)
 
-    println!("The secret number is: {}", secret_number);
-
     loop {
         println!("Please input your guess.");
 
