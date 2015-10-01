@@ -30,7 +30,14 @@ fn main() {
         Philosopher::new("Friedrich Nietzsche")
     ];
 
-    for p in &philosophers {
-        p.eat()
-    }
+    // In Vec<_>, _ is a placeholder and Rust can figure it out
+    let handles: Vec<_> = philosophers.into_iter().map(|p| {
+        thread::spawn(move || {
+            p.eat();
+        }) // No trailing semicolon makes it an expression (returned)
+    }).collect();
+
+    for h in handles {
+        h.join().unwrap(); // join() blocks execution until the thread
+    }                      // has completed execution
 }
