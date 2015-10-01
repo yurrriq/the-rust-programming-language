@@ -11,6 +11,10 @@ impl Philosopher {
             name: name.to_string()
         }
     }
+
+    fn eat(&self) {
+        println!("{} is done eating.", self.name)
+    }
 }
 
 fn main() {
@@ -21,4 +25,8 @@ fn main() {
         Philosopher::new("Søren Kierkegaard"),
         Philosopher::new("Friedrich Nietzsche")
     ];
+
+    for p in &philosophers {
+        p.eat()
+    }
 }
